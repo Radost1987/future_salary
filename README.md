@@ -13,7 +13,7 @@ Using [API HeadHunter](https://github.com/hhru/api/blob/master/docs/general.md) 
 pip install -r requirements.txt
 ```
 
-* To use all API methods, you need to register your application[https://api.superjob.ru/info/](https://api.superjob.ru/info/) and get Secret key.
+* To use all API methods, you need to register your application [https://api.superjob.ru/info/](https://api.superjob.ru/info/) and get Secret key.
 
 * Put SuperJob Secret key in file `.env` to folder with script like this:
 ```
