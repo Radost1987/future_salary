@@ -32,6 +32,23 @@ def predict_rub_salary_hh(vacancy):
 
 def collect_hh_statistics():
     languages = ['JavaScript', 'Go', 'Python', 'Java', 'PHP', 'C++', 'CSS', 'Ruby']
+
+
+def get_average_salary(vacancies):
+    salary_list = []
+    for vacancy in vacancies:
+        salary = predict_rub_salary_hh(vacancy)
+        if salary:
+            salary_list.append(salary)
+    if salary_list:
+        average_salary = int(numpy.average(salary_list))
+    else:
+        average_salary = 0
+    vac_processed = len(salary_list)
+    return average_salary, vac_processed
+
+
+def collect_hh_statistics(languages):
     language_statistics = {}
     for language in languages:
         hh_vacancies = download_hh_vacancies(language)[1]
