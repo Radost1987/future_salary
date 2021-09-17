@@ -1,7 +1,8 @@
+import numpy
 import requests
 from itertools import count
 
-from average_salary import predict_salary, predict_average_salary
+from salary import predict_salary
 
 
 def download_hh_vacancies(language):
@@ -58,7 +59,3 @@ def collect_hh_statistics(languages):
             'average_salary': average_salary
         }
     return language_statistics
-
-
-if __name__ == '__main__':
-    print(collect_hh_statistics())
