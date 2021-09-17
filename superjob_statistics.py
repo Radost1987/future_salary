@@ -39,6 +39,18 @@ def predict_rub_salary_superjob(vacancy):
 
 def collect_sj_statistics():
     languages = ['JavaScript', 'Go', 'Python', 'Java', 'PHP', 'C++', 'CSS', 'Ruby']
+def get_average_salary(vacancies):
+    salary_list = []
+    for vacancy in vacancies:
+        salary = predict_rub_salary_superjob(vacancy)
+        if salary:
+            salary_list.append(salary)
+    if salary_list:
+        average_salary = int(numpy.average(salary_list))
+    else:
+        average_salary = 0
+    vac_processed = len(salary_list)
+    return average_salary, vac_processed
     language_statistics = {}
     for language in languages:
         sj_vacancies = download_sj_vacancies(language)[1]
