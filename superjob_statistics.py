@@ -32,7 +32,7 @@ def download_sj_vacancies(language):
 
 def predict_rub_salary_superjob(vacancy):
     if vacancy['currency'] == 'rub':
-        if vacancy['payment_from'] == 0 and vacancy['payment_to'] == 0:
+        if not vacancy['payment_from'] and not vacancy['payment_to']:
             pass
         else:
             return vacancy['payment_from'], vacancy['payment_to']
