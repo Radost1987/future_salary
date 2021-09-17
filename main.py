@@ -5,8 +5,7 @@ from superjob_statistics import collect_sj_statistics
 from hh_statistics import collect_hh_statistics
 
 
-def get_statistics_table(vacancies_statistics, site_name):
-    title = site_name
+def get_statistics_table(vacancies_statistics, title):
     table_data = [[
         'Язык программирования',
         'Вакансий найдено',
