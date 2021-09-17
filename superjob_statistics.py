@@ -14,8 +14,6 @@ def download_sj_vacancies(language):
     headers = {'X-Api-App-Id': super_job_secret_key}
     vacancies_list = []
     for page in count(0):
-        if page == 5:
-            break
         payload = {
             'town': '4',
             'keyword': f'Программист {language}',
@@ -27,6 +25,8 @@ def download_sj_vacancies(language):
         page_vacancies = page_response.json()
         vacancies_list.extend(page_vacancies['objects'])
     number_vacancies = page_response.json()['total']
+        if not page_vacancies['more']:
+            break
     return number_vacancies, vacancies_list
 
 
