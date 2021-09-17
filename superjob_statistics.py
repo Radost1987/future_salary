@@ -1,15 +1,10 @@
-import os
-
 import requests
-from dotenv import load_dotenv
 from itertools import count
 
 from average_salary import predict_salary, predict_average_salary
 
 
-def download_sj_vacancies(language):
-    load_dotenv()
-    super_job_secret_key = os.getenv('SUPER_JOB_SECRET_KEY')
+def download_sj_vacancies(super_job_secret_key, language):
     url = 'https://api.superjob.ru/2.0/vacancies/'
     headers = {'X-Api-App-Id': super_job_secret_key}
     vacancies_list = []
