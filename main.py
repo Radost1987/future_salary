@@ -17,7 +17,7 @@ def get_statistics_table(vacancies_statistics, site_name):
                        f"{value['vacancies_processed']}",
                        f"{value['average_salary']}"])
     table = AsciiTable(table_data, title)
-    print(table.table)
+    return table
 
 
 def main():
@@ -26,6 +26,8 @@ def main():
     get_statistics_table(super_job_vacancies_statistics, 'SuperJob Moscow')
     get_statistics_table(head_hunter_vacancies_statistics, 'HeadHunter Moscow')
 
+    print(superjob_table.table)
+    print(headhuter_table.table)
 
 if __name__ == '__main__':
     main()
