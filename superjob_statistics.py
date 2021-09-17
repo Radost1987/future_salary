@@ -1,7 +1,8 @@
+import numpy
 import requests
 from itertools import count
 
-from average_salary import predict_salary, predict_average_salary
+from salary import predict_salary
 
 
 def download_sj_vacancies(super_job_secret_key, language):
@@ -21,6 +22,7 @@ def download_sj_vacancies(super_job_secret_key, language):
         vacancies_list.extend(page_vacancies['objects'])
         if not page_vacancies['more']:
             break
+    number_vacancies = page_vacancies['total']
     return number_vacancies, vacancies_list
 
 
@@ -35,8 +37,6 @@ def predict_rub_salary_superjob(vacancy):
             return vacancy['payment_from'], vacancy['payment_to']
 
 
-def collect_sj_statistics():
-    languages = ['JavaScript', 'Go', 'Python', 'Java', 'PHP', 'C++', 'CSS', 'Ruby']
 def get_average_salary(vacancies):
     salary_list = []
     for vacancy in vacancies:
@@ -65,7 +65,3 @@ def collect_sj_statistics(super_job_secret_key, languages):
             'average_salary': average_salary
         }
     return language_statistics
-
-
-if __name__ == '__main__':
-    print(collect_sj_statistics())
