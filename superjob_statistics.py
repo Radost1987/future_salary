@@ -24,7 +24,6 @@ def download_sj_vacancies(language):
         page_response.raise_for_status()
         page_vacancies = page_response.json()
         vacancies_list.extend(page_vacancies['objects'])
-    number_vacancies = page_response.json()['total']
         if not page_vacancies['more']:
             break
     return number_vacancies, vacancies_list

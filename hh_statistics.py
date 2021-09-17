@@ -21,8 +21,8 @@ def download_hh_vacancies(language):
         vacancies_list.extend(page_data['items'])
         if page == page_data['pages'] - 1:
             break
-    number_founded_vacancies = page_response.json()['found']
     return number_founded_vacancies, vacancies_list
+    number_founded_vacancies = page_data['found']
 
 
 def predict_rub_salary_hh(vacancy):
