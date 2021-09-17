@@ -1,3 +1,4 @@
+import numpy
 from terminaltables import AsciiTable
 
 from superjob_statistics import collect_sj_statistics
@@ -21,11 +22,22 @@ def get_statistics_table(vacancies_statistics, site_name):
 
 
 def main():
-    super_job_vacancies_statistics = collect_sj_statistics()
-    head_hunter_vacancies_statistics = collect_hh_statistics()
-    get_statistics_table(super_job_vacancies_statistics, 'SuperJob Moscow')
-    get_statistics_table(head_hunter_vacancies_statistics, 'HeadHunter Moscow')
-
+    load_dotenv()
+    superjob_secret_key = os.getenv('SUPER_JOB_SECRET_KEY')
+    languages = ['JavaScript', 'Go', 'Python', 'Java', 'PHP', 'C++', 'CSS', 'Ruby']
+    superjob_vacancies_statistics = collect_sj_statistics(
+        superjob_secret_key,
+        languages
+        )
+    headhunter_vacancies_statistics = collect_hh_statistics(languages)
+    superjob_table = get_statistics_table(
+        superjob_vacancies_statistics,
+        'SuperJob Moscow'
+    )
+    headhuter_table = get_statistics_table(
+        headhunter_vacancies_statistics,
+        'HeadHunter Moscow'
+    )
     print(superjob_table.table)
     print(headhuter_table.table)
 
