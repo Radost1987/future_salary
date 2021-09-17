@@ -27,11 +27,10 @@ def download_hh_vacancies(language):
 
 def predict_rub_salary_hh(vacancy):
     if vacancy['salary'] and vacancy['salary']['currency'] == 'RUR':
-        return vacancy['salary']['from'], vacancy['salary']['to']
-
-
-def collect_hh_statistics():
-    languages = ['JavaScript', 'Go', 'Python', 'Java', 'PHP', 'C++', 'CSS', 'Ruby']
+        salary_from = vacancy['salary']['from']
+        salary_to = vacancy['salary']['to']
+        salary = predict_salary(salary_from, salary_to)
+        return salary
 
 
 def get_average_salary(vacancies):
@@ -51,17 +50,8 @@ def get_average_salary(vacancies):
 def collect_hh_statistics(languages):
     language_statistics = {}
     for language in languages:
-        hh_vacancies = download_hh_vacancies(language)[1]
-        number_founded_vacancies = download_hh_vacancies(language)[0]
-        salary_list = []
-        for vacancy in hh_vacancies:
-            if predict_rub_salary_hh(vacancy):
-                salary_from = predict_rub_salary_hh(vacancy)[0]
-                salary_to = predict_rub_salary_hh(vacancy)[1]
-                salary = predict_salary(salary_from, salary_to)
-                salary_list.append(salary)
-        average_salary = predict_average_salary(salary_list)
-        vac_processed = len(salary_list)
+        number_founded_vacancies, hh_vacancies = download_hh_vacancies(language)
+        average_salary, vac_processed = get_average_salary(hh_vacancies)
         language_statistics[language] = {
             'vacancies_found': number_founded_vacancies,
             'vacancies_processed': vac_processed,
