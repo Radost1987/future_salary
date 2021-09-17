@@ -34,6 +34,9 @@ def predict_rub_salary_superjob(vacancy):
         if not vacancy['payment_from'] and not vacancy['payment_to']:
             pass
         else:
+            salary_from = vacancy['payment_from']
+            salary_to = vacancy['payment_to']
+            salary = predict_salary(salary_from, salary_to)
             return vacancy['payment_from'], vacancy['payment_to']
 
 
@@ -51,19 +54,16 @@ def get_average_salary(vacancies):
         average_salary = 0
     vac_processed = len(salary_list)
     return average_salary, vac_processed
+
+
+def collect_sj_statistics(super_job_secret_key, languages):
     language_statistics = {}
     for language in languages:
-        sj_vacancies = download_sj_vacancies(language)[1]
-        number_founded_vacancies = download_sj_vacancies(language)[0]
-        salary_list = []
-        for vacancy in sj_vacancies:
-            if predict_rub_salary_superjob(vacancy):
-                salary_from = predict_rub_salary_superjob(vacancy)[0]
-                salary_to = predict_rub_salary_superjob(vacancy)[1]
-                salary = predict_salary(salary_from, salary_to)
-                salary_list.append(salary)
-        average_salary = predict_average_salary(salary_list)
-        vac_processed = len(salary_list)
+        number_founded_vacancies, sj_vacancies = download_sj_vacancies(
+            super_job_secret_key,
+            language
+        )
+        average_salary, vac_processed = get_average_salary(sj_vacancies)
         language_statistics[language] = {
             'vacancies_found': number_founded_vacancies,
             'vacancies_processed': vac_processed,
