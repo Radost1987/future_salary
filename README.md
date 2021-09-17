@@ -2,7 +2,7 @@
 
 This script gathers information about the average salary from sites [SuperJob](https://www.superjob.ru) and [HeadHunter](https://www.hh.ru) on vacancies "Programmer" for 8 popular programming languages: JavaScript, Go, Python, Java, PHP, C++, CSS, Ruby.
 Only vacancies from Moscow are considered.
-Using [API HeadHunter](https://github.com/hhru/api/blob/master/docs/general.md) and [API SuperJob](https://api.superjob.ru)
+Using [API HeadHunter](https://github.com/hhru/api/blob/master/docs/general.md) and [API SuperJob](https://api.superjob.ru).
 
 ### How to install
 
