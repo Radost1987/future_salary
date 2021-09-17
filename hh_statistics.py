@@ -19,7 +19,7 @@ def download_hh_vacancies(language):
         page_response.raise_for_status()
         page_data = page_response.json()
         vacancies_list.extend(page_data['items'])
-        if page >= page_data['pages'] or page == 19:
+        if page == page_data['pages'] - 1:
             break
     number_founded_vacancies = page_response.json()['found']
     return number_founded_vacancies, vacancies_list
