@@ -1,4 +1,7 @@
+import os
+
 import numpy
+from dotenv import load_dotenv
 from terminaltables import AsciiTable
 
 from superjob_statistics import collect_sj_statistics
