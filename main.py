@@ -8,20 +8,20 @@ from hh_statistics import collect_hh_statistics
 
 
 def get_statistics_table(vacancies_statistics, title):
-    table_data = [[
+    statistics_table = [[
         'Язык программирования',
         'Вакансий найдено',
         'Вакансий обработано',
         'Средняя зарплата'
     ]]
-    for language, value in vacancies_statistics.items():
-        table_data.append([
+    for language, number in vacancies_statistics.items():
+        statistics_table.append([
             language,
             number['vacancies_found'],
             number['vacancies_processed'],
             number['average_salary']
         ])
-    table = AsciiTable(table_data, title)
+    table = AsciiTable(statistics_table, title)
     return table
 
 
