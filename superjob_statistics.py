@@ -28,13 +28,6 @@ def download_sj_vacancies(super_job_secret_key, language):
 
 def predict_rub_salary_superjob(vacancy):
     if vacancy['currency'] == 'rub':
-        if not vacancy['payment_from'] and not vacancy['payment_to']:
-            pass
-        else:
-            salary_from = vacancy['payment_from']
-            salary_to = vacancy['payment_to']
-            salary = predict_salary(salary_from, salary_to)
-            return vacancy['payment_from'], vacancy['payment_to']
         salary_from = vacancy['payment_from']
         salary_to = vacancy['payment_to']
         salary = predict_salary(salary_from, salary_to)
