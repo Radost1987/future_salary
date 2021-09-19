@@ -7,7 +7,7 @@ from salary import predict_salary, get_average_salary
 def download_sj_vacancies(super_job_secret_key, language):
     url = 'https://api.superjob.ru/2.0/vacancies/'
     headers = {'X-Api-App-Id': super_job_secret_key}
-    vacancies_list = []
+    founded_vacancies = []
     for page in count(0):
         payload = {
             'town': '4',
@@ -18,7 +18,7 @@ def download_sj_vacancies(super_job_secret_key, language):
         page_response = requests.get(url, headers=headers, params=payload)
         page_response.raise_for_status()
         page_vacancies = page_response.json()
-        vacancies_list.extend(page_vacancies['objects'])
+        founded_vacancies.extend(page_vacancies['objects'])
         if not page_vacancies['more']:
             break
     number_vacancies = page_vacancies['total']
