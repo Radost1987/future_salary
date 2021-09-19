@@ -1,8 +1,7 @@
-import numpy
 import requests
 from itertools import count
 
-from salary import predict_salary
+from salary import predict_salary, get_average_salary
 
 
 def download_sj_vacancies(super_job_secret_key, language):
@@ -35,20 +34,10 @@ def predict_rub_salary_superjob(vacancy):
             salary_to = vacancy['payment_to']
             salary = predict_salary(salary_from, salary_to)
             return vacancy['payment_from'], vacancy['payment_to']
-
-
-def get_average_salary(vacancies):
-    salary_list = []
-    for vacancy in vacancies:
-        salary = predict_rub_salary_superjob(vacancy)
-        if salary:
-            salary_list.append(salary)
-    if salary_list:
-        average_salary = int(numpy.average(salary_list))
-    else:
-        average_salary = 0
-    vac_processed = len(salary_list)
-    return average_salary, vac_processed
+        salary_from = vacancy['payment_from']
+        salary_to = vacancy['payment_to']
+        salary = predict_salary(salary_from, salary_to)
+        return salary
 
 
 def collect_sj_statistics(super_job_secret_key, languages):
@@ -58,7 +47,10 @@ def collect_sj_statistics(super_job_secret_key, languages):
             super_job_secret_key,
             language
         )
-        average_salary, vac_processed = get_average_salary(sj_vacancies)
+        average_salary, vac_processed = get_average_salary(
+            sj_vacancies,
+            predict_rub_salary_superjob
+        )
         language_statistics[language] = {
             'vacancies_found': number_founded_vacancies,
             'vacancies_processed': vac_processed,
