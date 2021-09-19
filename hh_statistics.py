@@ -6,23 +6,24 @@ from salary import predict_salary, get_average_salary
 
 def download_hh_vacancies(language):
     url = 'https://api.hh.ru/vacancies'
+    moscow_id = 1
     founded_vacancies = []
     for page in count(0):
         payload = {
             'text': f'Программист {language}',
-            'area': '1',
+            'area': moscow_id,
             'period': 30,
             'page': page,
             'per_page': 100
         }
         page_response = requests.get(url, params=payload)
         page_response.raise_for_status()
-        page_data = page_response.json()
-        founded_vacancies.extend(page_data['items'])
-        if page == page_data['pages'] - 1:
+        page_vacancies = page_response.json()
+        founded_vacancies.extend(page_vacancies['items'])
+        if page == page_vacancies['pages'] - 1:
             break
-    number_founded_vacancies = page_data['found']
-    return number_founded_vacancies, founded_vacancies
+    founded_vacancies_number = page_vacancies['found']
+    return founded_vacancies_number, founded_vacancies
 
 
 def predict_rub_salary_hh(vacancy):
