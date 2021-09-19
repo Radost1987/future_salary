@@ -17,9 +17,9 @@ def get_statistics_table(vacancies_statistics, title):
     for language, value in vacancies_statistics.items():
         table_data.append([
             language,
-            f"{value['vacancies_found']}",
-            f"{value['vacancies_processed']}",
-            f"{value['average_salary']}"
+            number['vacancies_found'],
+            number['vacancies_processed'],
+            number['average_salary']
         ])
     table = AsciiTable(table_data, title)
     return table
