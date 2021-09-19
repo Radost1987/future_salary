@@ -1,7 +1,7 @@
 import requests
 from itertools import count
 
-from salary import predict_salary, get_average_salary
+from salary_calculater import predict_salary, get_average_salary
 
 
 def download_sj_vacancies(super_job_secret_key, language):
