@@ -7,10 +7,11 @@ from salary import predict_salary, get_average_salary
 def download_sj_vacancies(super_job_secret_key, language):
     url = 'https://api.superjob.ru/2.0/vacancies/'
     headers = {'X-Api-App-Id': super_job_secret_key}
+    moscow_id = 4
     founded_vacancies = []
     for page in count(0):
         payload = {
-            'town': '4',
+            'town': moscow_id,
             'keyword': f'Программист {language}',
             'page': page,
             'count': 100
@@ -21,8 +22,8 @@ def download_sj_vacancies(super_job_secret_key, language):
         founded_vacancies.extend(page_vacancies['objects'])
         if not page_vacancies['more']:
             break
-    number_vacancies = page_vacancies['total']
-    return number_vacancies, vacancies_list
+    founded_vacancies_number = page_vacancies['total']
+    return founded_vacancies_number, founded_vacancies
 
 
 def predict_rub_salary_superjob(vacancy):
