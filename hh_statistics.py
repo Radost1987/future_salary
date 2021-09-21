@@ -37,13 +37,13 @@ def predict_rub_salary_hh(vacancy):
 def collect_hh_statistics(languages):
     language_statistics = {}
     for language in languages:
-        number_founded_vacancies, hh_vacancies = download_hh_vacancies(language)
+        founded_vacancies_number, hh_vacancies = download_hh_vacancies(language)
         average_salary, vac_processed = get_average_salary(
             hh_vacancies,
             predict_rub_salary_hh
         )
         language_statistics[language] = {
-            'vacancies_found': number_founded_vacancies,
+            'vacancies_found': founded_vacancies_number,
             'vacancies_processed': vac_processed,
             'average_salary': average_salary
         }

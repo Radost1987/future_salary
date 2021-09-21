@@ -37,7 +37,7 @@ def predict_rub_salary_superjob(vacancy):
 def collect_sj_statistics(super_job_secret_key, languages):
     language_statistics = {}
     for language in languages:
-        number_founded_vacancies, sj_vacancies = download_sj_vacancies(
+        founded_vacancies_number, sj_vacancies = download_sj_vacancies(
             super_job_secret_key,
             language
         )
@@ -46,7 +46,7 @@ def collect_sj_statistics(super_job_secret_key, languages):
             predict_rub_salary_superjob
         )
         language_statistics[language] = {
-            'vacancies_found': number_founded_vacancies,
+            'vacancies_found': founded_vacancies_number,
             'vacancies_processed': vac_processed,
             'average_salary': average_salary
         }
