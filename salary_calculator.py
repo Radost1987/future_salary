@@ -13,10 +13,10 @@ def predict_salary(salary_from, salary_to):
     return salary
 
 
-def get_average_salary(vacancies, rub_salary):
+def get_average_salary(vacancies, predict_rub_salary):
     salaries = []
     for vacancy in vacancies:
-        salary = rub_salary(vacancy)
+        salary = predict_rub_salary(vacancy)
         if salary:
             salaries.append(salary)
     if salaries:

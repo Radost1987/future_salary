@@ -1,7 +1,7 @@
 import requests
 from itertools import count
 
-from salary_calculater import predict_salary, get_average_salary
+from salary_calculator import predict_salary, get_average_salary
 
 
 def download_hh_vacancies(language):
